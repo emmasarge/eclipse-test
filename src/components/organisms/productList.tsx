@@ -16,7 +16,6 @@ function ProductList() {
     console.log('Product ID added to basket:', productId);
   };
 
-// Find the product with the highest rating
 const highestRatedProduct = products.length > 0
   ? products.reduce((prev, current) =>
       prev.rating.rate > current.rating.rate ? prev : current
@@ -38,8 +37,7 @@ const highestRatedProduct = products.length > 0
   };
 
   return (
-    <div>
-      {/* Render product cards */}
+    <div className='flex justify-between items-center flex-col h-full  overflow-y-scroll min-h-screen w-11/12'>
       {loading ? (
         <p>Loading...</p>
       ) : error ? (
