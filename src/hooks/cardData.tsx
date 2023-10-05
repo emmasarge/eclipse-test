@@ -5,6 +5,7 @@ interface Product {
   id: number;
   title: string;
   price: number;
+  formattedPrice: string;
   description: string;
   category: string;
   image: string;
@@ -29,10 +30,11 @@ export const useProductData = () => {
       try {
         const response = await axios.get<Product[]>('https://fakestoreapi.com/products');
 
-        // Add dummy data to each product (e.g., rating)
-        const cardData = response.data.map((product) => ({
+        const cardData = response.data
+        .filter((product) => product.category.toLowerCase() !== 'jewelery') // Filter out "jewelery" category
+        .map((product) => ({
           ...product,
-          // Add dummy data properties here
+          formattedPrice: product.price.toFixed(2), // Format price with 2 decimal places
         }));
 
         setProducts(cardData);

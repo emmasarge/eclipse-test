@@ -1,33 +1,54 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useProductData } from '../../hooks/cardData';
+import ProductCard from '../molecules/productCard';
 
-export function ProductList() {
-  const { loading, error, products } = useProductData();
+function ProductList() {
+  const { loading, error, products } = useProductData(); 
+  const [refreshTimestamp, setRefreshTimestamp] = useState<number>(0);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  useEffect(() => {
+    if (!loading && !error) {
+      setRefreshTimestamp(Date.now());
+    }
+  }, [loading, error]);
 
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
-console.log(products)
+  const handleAddToBasket = (productId: number) => {
+    console.log('Product ID added to basket:', productId);
+  };
+
+// Find the product with the highest rating
+const highestRatedProduct = products.length > 0
+  ? products.reduce((prev, current) =>
+      prev.rating.rate > current.rating.rate ? prev : current
+    )
+  : null;
+
+  const sortedProducts = products.slice().sort((a, b) => b.rating.rate - a.rating.rate);
+
+  const renderProductCards = () => {
+    return sortedProducts.map((product) => (
+      <ProductCard
+        key={product.id}
+        product={product}
+        onAddToBasket={handleAddToBasket}
+        refreshTimestamp={refreshTimestamp}
+        isRecommended={product.id === highestRatedProduct?.id || false} 
+      />
+    ));
+  };
+
   return (
     <div>
-      <h2>Product List</h2>
-      <ul>
-        {products.map((product) => (
-          <li key={product.id}>
-            <div>
-              <img src={product.image} alt={product.title} />
-            </div>
-            <h3>{product.title}</h3>
-            <p>Price: ${product.price.toFixed(2)}</p>
-            {/* Add more card data properties here */}
-          </li>
-        ))}
-      </ul>
+      {/* Render product cards */}
+      {loading ? (
+        <p>Loading...</p>
+      ) : error ? (
+        <p>Error: {error}</p>
+      ) : (
+        renderProductCards()
+      )}
     </div>
   );
 }
 
+export default ProductList;
