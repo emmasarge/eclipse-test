@@ -101,7 +101,7 @@ const InventoryCounter: React.FC<InventoryCounterProps> = ({
   const tomorrowDate = formatTomorrowDate(getTomorrowDate());
 
   return (
-    <div className="w-[95%] mx-auto lg:mx-0 lg:w-full mt-0 flex flex-col justify-center items-center">
+    <div className=" mx-auto lg:mx-0 w-full mt-0 flex flex-col justify-center items-center">
          <div className="w-full lg:h-[220px] flex flex-col justify-between">
 <div className="w-full flex flex-col">
       <div className="h-2 flex max-w-[700px] mt-3 lg:mt-5 w-full mx-auto relative bg-gray-300  rounded-full overflow-hidden">
@@ -117,7 +117,7 @@ const InventoryCounter: React.FC<InventoryCounterProps> = ({
         <p className={`${stockTextColor} text-sm mt-[0.035em]`}>{stockText}</p>
       </div>
 
-      <div className="w-full">
+      <div className="w-[95%] mx-auto lg:w-full">
         <div className="mt-6 lg:mt-4 w-full ">
           <div className="flex flex-row items-start  justify-start mb-2">
             <div>

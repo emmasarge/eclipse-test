@@ -83,8 +83,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
     <div
       className={
         isRecommended
-          ? "w-11/12 lg:min-h-[420px] mb-2 mt-6 lg:mb-8 bg-white rounded-[20px] border-2 border-zinc-800 recommended-shadow pb-6 lg:pb-4 flex flex-col lg:px-4 "
-          : "w-11/12 lg:min-h-[420px] bg-white mt-6 rounded-[20px] shadow mb-2 lg:mb-8 items-start pb-6 lg:py-4 flex lg:px-4"
+          ? "w-11/12 lg:min-h-[420px] mb-2 mt-6 lg:mb-8 bg-white rounded-[20px] border-2 border-zinc-800 recommended-shadow pb-6 lg:pb-4 flex flex-col lg:px-4  max-w-[1400px] "
+          : "w-11/12 lg:min-h-[420px] bg-white mt-6 rounded-[20px] shadow mb-2 lg:mb-8 items-start pb-6 lg:py-4 flex lg:px-4 max-w-[1400px]"
       }
     >
       {isRecommended ? (
@@ -111,14 +111,14 @@ const ProductCard: React.FC<ProductCardProps> = ({
               {product.title}
             </h1>
             <div className="flex flex-row items-center mt-[0.05em] lg:mt-[0.25em]">
-              <div className="h-7 flex justify-center items-start  w-[150px] lg:max-w-[180px] ">
+              <div className="h-7 flex justify-center items-start  lg:w-fit max-w-[150px] lg:max-w-[180px] ">
                 <RatingStars
-                  height={"h-[2rem] md:h-[1.35em]"}
+                  height={"h-[1.5em] md:h-[1.35em]"}
                   rating={product.rating.rate}
                 />
               </div>
               <div></div>
-              <p className="text-zinc-800 text-base font-normal font-['Open Sans'] leading-relaxed">
+              <p className="text-zinc-800 lg:mb-1 text-base font-normal font-['Open Sans'] leading-relaxed">
                 {product.rating.count} Reviews
               </p>
             </div>
