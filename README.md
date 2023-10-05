@@ -1,3 +1,15 @@
+# EMMA SARGEANT TECH TEST ECLIPSE
+
+This project was made with React and Typescript, I used Tailwind.css for faster more responsive inline styling.
+
+
+I made a hook for the API call and a component for product card and the progress bar which is dynamic as each product is assigned a random number to its inventory to provide varied amounts to demonstrate the green and red.
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
