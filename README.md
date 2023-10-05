@@ -5,6 +5,7 @@ This project was made with React and Typescript, I used Tailwind.css for faster 
 
 I made a hook for the API call and a component for product card and the progress bar which is dynamic as each product is assigned a random number to its inventory to provide varied amounts to demonstrate the green and red.
 
+You can view the project live [here.](https://cool-marshmallow-b81485.netlify.app/)
 
 
 
