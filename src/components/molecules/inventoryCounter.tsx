@@ -103,7 +103,7 @@ const InventoryCounter: React.FC<InventoryCounterProps> = ({
   return (
     <div className="w-[95%] mx-auto lg:mx-0 lg:w-full mt-0 flex flex-col justify-center items-center">
          <div className="w-full lg:h-[220px] flex flex-col justify-between">
-<div>
+<div className="w-full flex flex-col">
       <div className="h-2 flex max-w-[700px] mt-3 lg:mt-5 w-full mx-auto relative bg-gray-300  rounded-full overflow-hidden">
         <div
           style={{

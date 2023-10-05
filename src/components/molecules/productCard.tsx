@@ -111,9 +111,9 @@ const ProductCard: React.FC<ProductCardProps> = ({
               {product.title}
             </h1>
             <div className="flex flex-row items-center mt-[0.05em] lg:mt-[0.25em]">
-              <div className="w-fit flex justify-center items-start max-w-[180px] ">
+              <div className="h-7 flex justify-center items-start  w-[150px] lg:max-w-[180px] ">
                 <RatingStars
-                  height={"h-[1.3em] md:h-[1.35em]"}
+                  height={"h-[2rem] md:h-[1.35em]"}
                   rating={product.rating.rate}
                 />
               </div>
