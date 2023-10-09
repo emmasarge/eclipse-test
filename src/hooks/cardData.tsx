@@ -70,7 +70,7 @@ export const useProductData = () => {
       lastFetchTimestamp &&
       currentTime - parseInt(lastFetchTimestamp) < CACHE_DURATION
     ) {
-      const { data } = JSON.parse(cachedData);
+     
       setDisplayedProducts(
         JSON.parse(localStorage.getItem("displayedProducts") || "[]")
       );
