@@ -24,35 +24,42 @@ export const useProductData = () => {
   const [products, setProducts] = useState<CardData[]>([]);
   const [displayedProducts, setDisplayedProducts] = useState<CardData[]>([]);
 
+  const fetchData = async () => {
+    try {
+      const response = await axios.get<Product[]>('https://fakestoreapi.com/products');
+      const cardDataWithRandomInventory = response.data
+        .filter((product) => product.category.toLowerCase() !== 'jewelery')
+        .map((product) => ({
+          ...product,
+          formattedPrice: product.price.toFixed(2),
+        }));
+      setProducts(cardDataWithRandomInventory);
+      setLoading(false);
+    } catch (err) {
+      console.error('Error fetching data:', err);
+      setError('Error fetching product data.');
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get<Product[]>('https://fakestoreapi.com/products');
-
-        const cardDataWithRandomInventory = response.data
-          .filter((product) => product.category.toLowerCase() !== 'jewelery') // Filter out "jewelry" category
-          .map((product) => ({
-            ...product,
-            formattedPrice: product.price.toFixed(2),
-          }));
-
-        setProducts(cardDataWithRandomInventory);
-        setLoading(false);
-      } catch (err) {
-        console.error('Error fetching data:', err);
-        setError('Error fetching product data.');
-        setLoading(false);
-      }
-    };
-
     fetchData();
   }, []);
 
   useEffect(() => {
-    // Randomly select 10 products from the products list
     const randomProducts = products.sort(() => 0.5 - Math.random()).slice(0, 10);
     setDisplayedProducts(randomProducts);
   }, [products]);
+
+  useEffect(() => {
+    const refreshInterval = setInterval(() => {
+      fetchData(); 
+    }, 180000); 
+
+    return () => {
+      clearInterval(refreshInterval); 
+    };
+  }, []);
 
   return { loading, error, products: displayedProducts };
 };

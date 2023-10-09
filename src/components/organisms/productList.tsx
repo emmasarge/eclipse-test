@@ -23,17 +23,16 @@ function ProductList() {
       } else if (prev.rating.rate < current.rating.rate) {
         return current;
       } else {
-        // If the ratings are equal, compare by the number of reviews
         return prev.rating.count > current.rating.count ? prev : current;
       }
     })
   : null;
 
-
-  // const sortedProducts = products.slice().sort((a, b) => b.rating.rate - a.rating.rate); ---- commenting this out to keep the order of products random
+console.log(products)
+  const sortedProducts = products.slice().sort((a, b) => b.rating.rate - a.rating.rate);
 
   const renderProductCards = () => {
-    return products.map((product) => (
+    return sortedProducts.map((product) => (
       <ProductCard
         key={product.id}
         product={product}
