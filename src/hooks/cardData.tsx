@@ -22,8 +22,7 @@ export const useProductData = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [products, setProducts] = useState<CardData[]>([]);
-
-
+  const [displayedProducts, setDisplayedProducts] = useState<CardData[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,8 +36,6 @@ export const useProductData = () => {
             formattedPrice: product.price.toFixed(2),
           }));
 
-       
-
         setProducts(cardDataWithRandomInventory);
         setLoading(false);
       } catch (err) {
@@ -51,6 +48,11 @@ export const useProductData = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    // Randomly select 10 products from the products list
+    const randomProducts = products.sort(() => 0.5 - Math.random()).slice(0, 10);
+    setDisplayedProducts(randomProducts);
+  }, [products]);
 
-  return { loading, error, products };
+  return { loading, error, products: displayedProducts };
 };
