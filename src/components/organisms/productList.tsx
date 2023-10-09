@@ -16,16 +16,24 @@ function ProductList() {
     console.log('Product ID added to basket:', productId);
   };
 
-const highestRatedProduct = products.length > 0
-  ? products.reduce((prev, current) =>
-      prev.rating.rate > current.rating.rate ? prev : current
-    )
+  const highestRatedProduct = products.length > 0
+  ? products.reduce((prev, current) => {
+      if (prev.rating.rate > current.rating.rate) {
+        return prev;
+      } else if (prev.rating.rate < current.rating.rate) {
+        return current;
+      } else {
+        // If the ratings are equal, compare by the number of reviews
+        return prev.rating.count > current.rating.count ? prev : current;
+      }
+    })
   : null;
 
-  const sortedProducts = products.slice().sort((a, b) => b.rating.rate - a.rating.rate);
+
+  // const sortedProducts = products.slice().sort((a, b) => b.rating.rate - a.rating.rate); ---- commenting this out to keep the order of products random
 
   const renderProductCards = () => {
-    return sortedProducts.map((product) => (
+    return products.map((product) => (
       <ProductCard
         key={product.id}
         product={product}
