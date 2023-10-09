@@ -28,7 +28,6 @@ function ProductList() {
     })
   : null;
 
-console.log(products)
   const sortedProducts = products.slice().sort((a, b) => b.rating.rate - a.rating.rate);
 
   const renderProductCards = () => {
